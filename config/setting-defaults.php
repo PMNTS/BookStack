@@ -5,7 +5,7 @@
  */
 return [
 
-    'app-name'        => 'BookStack',
+    'app-name'        => 'Latitude Financial Services',
     'app-name-header' => true,
     'app-editor'      => 'wysiwyg',
     'app-color'       => '#0288D1',
