@@ -174,7 +174,7 @@ class PageController extends Controller
         $pageNav = $this->pageRepo->getPageNav($page);
         
         Views::add($page);
-        $this->setPageTitle($page->getShortName() . "Titties");
+        $this->setPageTitle($page->getShortName());
         //Log::info("Boom");
         return view('pages/show', ['page' => $page, 'book' => $book,
                                    'current' => $page, 'sidebarTree' => $sidebarTree, 'pageNav' => $pageNav])->withShortcodes();

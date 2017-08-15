@@ -58,16 +58,19 @@ class ShortcodesServiceProvider extends ServiceProvider
       // Connection constants
  
       // Connection creation
-      $memcache = new \Memcache;
-      $cacheAvailable = $memcache->connect(MEMCACHED_HOST, MEMCACHED_PORT);
+      $memcache = new \Memcached;
+      $memcache->setOption(\Memcached::OPT_BINARY_PROTOCOL, true);
+      $memcache->setOption(\Memcached::OPT_COMPRESSION, false);
+      $cacheAvailable = $memcache->addServer(MEMCACHED_HOST, MEMCACHED_PORT);
 
       if ($cacheAvailable) {
         $cached = $memcache->get($url);
+        if (isset($_GET['flush_cache']) && $_GET['flush_cache'] == 'true') $cached = null;
         if (!$cached) {
           $srcData = @file_get_contents($url);
           if ($srcData === false) { $srcData = "Error: '$url' does not appear to be a valid URL."; }
           else {
-            $memcache->set($url, $srcData);
+            $memcache->set($url, $srcData, 300);
           }
 
           $cached = $srcData;
