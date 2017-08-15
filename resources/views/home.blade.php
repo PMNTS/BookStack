@@ -40,32 +40,6 @@
                 'emptyText' => $signedIn ? 'You have not viewed any pages' : 'No books have been created'
                 ])
             </div>
-
-            <div class="col-sm-4">
-                <h4><a class="no-color" href="{{ baseUrl("/pages/recently-created") }}">Recently Created Pages</a></h4>
-                <div id="recently-created-pages">
-                    @include('partials/entity-list', [
-                    'entities' => $recentlyCreatedPages,
-                    'style' => 'compact',
-                    'emptyText' => 'No pages have been recently created'
-                    ])
-                </div>
-
-                <h4><a class="no-color" href="{{ baseUrl("/pages/recently-updated") }}">Recently Updated Pages</a></h4>
-                <div id="recently-updated-pages">
-                    @include('partials/entity-list', [
-                    'entities' => $recentlyUpdatedPages,
-                    'style' => 'compact',
-                    'emptyText' => 'No pages have been recently updated'
-                    ])
-                </div>
-            </div>
-
-            <div class="col-sm-4" id="recent-activity">
-                <h4>Recent Activity</h4>
-                @include('partials/activity-list', ['activity' => $activity])
-            </div>
-
         </div>
     </div>
 
